@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PocApi</name>
+    </assembly>
+    <members>
+        <member name="T:PocApi.Controllers.WeatherForecastController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PocApi.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{PocApi.Controllers.WeatherForecastController},Dominio.Interfaces.IProcessaPagamento)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="processaPagamento"></param>
+        </member>
+        <member name="M:PocApi.Controllers.WeatherForecastController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

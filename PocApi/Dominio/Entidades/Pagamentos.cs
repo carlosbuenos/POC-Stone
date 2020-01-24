@@ -10,18 +10,21 @@ namespace Dominio.Entidades
 		public Pagamentos(TiposDePagamento _TiposDePagamento, double _Valor)
 		{
 			codPagamento = GerarCodigoPagamento();
-			tipoDePagamento = RetornaDescricaoDoTipoDePagamento(_TiposDePagamento);
+			tipoDePagamento = RetornaDescricao(_TiposDePagamento);
 			valor = _Valor;
+			DataPagamento = DateTime.Now;
 		}
 		public string codPagamento { get; private set; }
 		public string tipoDePagamento { get; private set; }
 		public double valor { get; private set; }
+		public string statusPagamento { get; private set; }
+		public DateTime DataPagamento { get; private set; }
 
 		private string GerarCodigoPagamento()
 		{
-			return Guid.NewGuid().ToString();
+			return Guid.NewGuid().ToString().Replace("-","").ToUpper();
 		}
-		private string RetornaDescricaoDoTipoDePagamento(Enum value)
+		private string RetornaDescricao(Enum value)
 		{
 			FieldInfo fi = value.GetType().GetField(value.ToString());
 
@@ -35,6 +38,10 @@ namespace Dominio.Entidades
 			return value.ToString();
 		}
 
+		public void AtualizaStatusPagamento(StatusPagamento status)
+		{
+			statusPagamento = RetornaDescricao(status);
+		}
 
 	}
 }
