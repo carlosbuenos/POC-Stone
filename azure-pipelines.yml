@@ -6,8 +6,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  DockerImageName: 'estudo-ci-cd/github.com/carlosbuenos/containerbase'
-  RepositoryName: 'estudo-ci-cd/github.com/carlosbuenos/containerbase'
+  DockerImageName: 'estudo-ci-cd/github.com/carlosbuenos/POC-Stone'
+  RepositoryName: 'estudo-ci-cd/github.com/carlosbuenos/POC-Stone'
 stages:
 - stage: Build
   displayName: Build image
@@ -24,14 +24,14 @@ stages:
         imageName: '$(DockerImageName):$(Build.BuildId)'
         repository: '$(RepositoryName)'
         command: buildAndPush
-        dockerfile: 'ApiEstudo/Dockerfile'
+        dockerfile: 'PocApi/Dockerfile'
         tags: |
           $(tag)
     - task: CmdLine@1
       displayName: Lock File Mnifest
       inputs:
         filename: /bin/bash
-        arguments: '-c "awk ''{gsub(\"ApiEstudo\", \"gcr.io/$(DockerImageName):$(Build.BuildId)\", $0); print}'' deployment.yaml > $(build.artifactstagingdirectory)/deployment.yaml"'
+        arguments: '-c "awk ''{gsub(\"pocApi\", \"gcr.io/$(DockerImageName):$(Build.BuildId)\", $0); print}'' deployment.yaml > $(build.artifactstagingdirectory)/deployment.yaml"'
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact'
       inputs:

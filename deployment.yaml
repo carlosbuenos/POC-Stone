@@ -1,15 +1,15 @@
 ﻿apiVersion: v1
 kind: Service
 metadata:
-  name: apiestudo-service
+  name: pocapi-service
 spec:
   ports:
-  - port: 81
-    targetPort: 81
+  - port: 82
+    targetPort: 82
     protocol: TCP
     name: http
   selector:
-    app: apiestudo
+    app: pocapi
   type: LoadBalancer
 
 
@@ -17,29 +17,21 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: apiestudo
+  name: pocapi
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: apiestudo
+        app: pocapi
     spec:
-      volumes:
-      - name: google-cloud-key
-        secret:
-          secretName: pubsub-key
+     
       containers:
-      - name: apiestudo
-        image: ApiEstudo
-        volumeMounts:
-        - name: google-cloud-key
-          mountPath: /var/secrets/google
-        env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/secrets/google/key.json
+      - name: pocapi
+        image: PocApi
+        
         ports:
-          - containerPort: 81
+          - containerPort: 82
         resources:
           limits:
             cpu: "1"
