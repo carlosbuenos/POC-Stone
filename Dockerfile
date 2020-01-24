@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["PocApi/Dominio/Dominio.csproj", "Dominio/"]
 COPY ["PocApi/Infra/Infra.csproj", "Infra/"]
 COPY ["PocApi/PocApi/PocApi.csproj", "PocApi/"]
-RUN dotnet restore "PocApi/PocApi.csproj"
+RUN dotnet restore "PocApi/PocApi/PocApi.csproj"
 COPY . .
 WORKDIR "/src/PocApi"
 RUN dotnet build "PocApi.csproj" -c Release -o /app/build
