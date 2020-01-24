@@ -1,0 +1,49 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: apiestudo-service
+spec:
+  ports:
+  - port: 81
+    targetPort: 81
+    protocol: TCP
+    name: http
+  selector:
+    app: apiestudo
+  type: LoadBalancer
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: apiestudo
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: apiestudo
+    spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: pubsub-key
+      containers:
+      - name: apiestudo
+        image: ApiEstudo
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+        ports:
+          - containerPort: 81
+        resources:
+          limits:
+            cpu: "1"
+            memory: 3Gi
+          requests:
+            cpu: 400m
+            memory: 2Gi

@@ -1,0 +1,45 @@
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  DockerImageName: 'estudo-ci-cd/github.com/carlosbuenos/containerbase'
+  RepositoryName: 'estudo-ci-cd/github.com/carlosbuenos/containerbase'
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'gcr_teste'
+        imageName: '$(DockerImageName):$(Build.BuildId)'
+        repository: '$(RepositoryName)'
+        command: buildAndPush
+        dockerfile: 'ApiEstudo/Dockerfile'
+        tags: |
+          $(tag)
+    - task: CmdLine@1
+      displayName: Lock File Mnifest
+      inputs:
+        filename: /bin/bash
+        arguments: '-c "awk ''{gsub(\"ApiEstudo\", \"gcr.io/$(DockerImageName):$(Build.BuildId)\", $0); print}'' deployment.yaml > $(build.artifactstagingdirectory)/deployment.yaml"'
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+       PathtoPublish: '$(build.artifactstagingdirectory)'
+    - task: KubernetesManifest@0
+      displayName: Publish an image to GKE
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'clbueno-1'
+        namespace: 'default'
+        manifests: '$(build.artifactstagingdirectory)/deployment.yaml'
