@@ -6,8 +6,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  DockerImageName: 'estudo-ci-cd/github.com/carlosbuenos/POC-Stone'
-  RepositoryName: 'estudo-ci-cd/github.com/carlosbuenos/POC-Stone'
+  DockerImageName: 'estudo-ci-cd/github.com/carlosbuenos/pocstone'
+  RepositoryName: 'estudo-ci-cd/github.com/carlosbuenos/pocstone'
 stages:
 - stage: Build
   displayName: Build image
