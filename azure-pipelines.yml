@@ -24,7 +24,7 @@ stages:
         imageName: '$(DockerImageName):$(Build.BuildId)'
         repository: '$(RepositoryName)'
         command: buildAndPush
-        dockerfile: 'Dockerfile'
+        dockerfile: 'PocApi/Dockerfile'
         tags: |
           $(tag)
     - task: CmdLine@1
