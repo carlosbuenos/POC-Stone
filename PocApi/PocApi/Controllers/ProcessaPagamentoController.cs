@@ -33,7 +33,7 @@ namespace PocApi.Controllers
 		}
 
 		/// <summary>
-		/// Consultar um pagamento
+		/// Consultar um pagamento utilizando o código de rastreio gerado ao processar o pagamento.
 		/// </summary>
 		/// <param name="CodRastreio"></param>
 		/// <returns></returns>
