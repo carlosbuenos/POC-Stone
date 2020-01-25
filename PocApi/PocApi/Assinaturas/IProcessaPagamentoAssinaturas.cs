@@ -17,7 +17,7 @@ namespace PocApi.Assinaturas
 		/// </summary>
 		/// <param name="CodRastreio"></param>
 		/// <returns></returns>
-		ICollection<string> ConsultarPagamento(string CodRastreio);
+		string ConsultarPagamento(string CodRastreio);
 		/// <summary>
 		/// 
 		/// </summary>

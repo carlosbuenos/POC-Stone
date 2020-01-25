@@ -19,13 +19,14 @@ namespace Infra.ImplementacaoInteface
 
 		}
 
-		public async Task<ICollection<string>> ConsultarStatusDoProcessamento(IManipuladorPubSub mensageria, string _codRastreio)
+		public async Task<string> ConsultarStatusDoProcessamento(IManipuladorPubSub<Pagamentos> mensageria, string _codRastreio)
 		{
-			return await mensageria.LeituraMensagem(_codRastreio);
+			var retorno = (Pagamentos)await mensageria.LeituraMensagem(_codRastreio);
+			return retorno.statusPagamento;
 		}
 
 
-		public async Task<string> ExecutarProcessamento(IManipuladorPubSub mensageria, Pagamentos pagamento)
+		public async Task<string> ExecutarProcessamento(IManipuladorPubSub<Pagamentos> mensageria, Pagamentos pagamento)
 		{
 			pagamento.AtualizaStatusPagamento();
 			pagamento.AtribuirCodigoRastreio(mensageria.EnviarMensagem(JsonConvert.SerializeObject(pagamento)).Result);

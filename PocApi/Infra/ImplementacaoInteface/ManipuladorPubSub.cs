@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Infra.ImplementacaoInteface
 {
-	public class ManipuladorPubSub : IManipuladorPubSub
+	public class ManipuladorPubSub<T> : IManipuladorPubSub<T> where T : class
 	{
 		public async Task<string> EnviarMensagem(string mensagem)
 		{
@@ -38,7 +38,7 @@ namespace Infra.ImplementacaoInteface
 
 
 
-		public async Task<ICollection<string>> LeituraMensagem(string rastreio)
+		public async Task<T> LeituraMensagem(string rastreio)
 		{
 			List<string> retorno = new List<string>();
 			var subscriptionName = new SubscriptionName("estudo-ci-cd", "sb-poc-ex");
@@ -53,10 +53,10 @@ namespace Infra.ImplementacaoInteface
 			{
 				ContractResolver = new ConfiguracoesDeAtributos()
 			};
-			var obejtoPagamento = JsonConvert.DeserializeObject<Pagamentos>(Encoding.UTF8.GetString(mensagem.Message.Data.ToArray(), 0, mensagem.Message.Data.Length), settings);
-			retorno.Add(obejtoPagamento.statusPagamento);
+			var objeto = JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(mensagem.Message.Data.ToArray(), 0, mensagem.Message.Data.Length), settings);
+			
 
-			return retorno;
+			return objeto;
 		}
 	}
 }

@@ -20,16 +20,16 @@ namespace PocApi.Controllers
 	{
 
 		private readonly IProcessaPagamento _processarPagamento;
-		private readonly IManipuladorPubSub _mensageria;
+		private readonly IManipuladorPubSub<Pagamentos> _mensageriaPagametos;
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="processarPagamento"></param>
-		/// <param name="mensageria"></param>
-		public ProcessaPagamentoController(IProcessaPagamento processarPagamento, IManipuladorPubSub mensageria)
+		/// <param name="mensageriaPagametos"></param>
+		public ProcessaPagamentoController(IProcessaPagamento processarPagamento, IManipuladorPubSub<Pagamentos> mensageriaPagametos)
 		{
 			_processarPagamento = processarPagamento;
-			_mensageria = mensageria;
+			_mensageriaPagametos = mensageriaPagametos;
 		}
 
 		/// <summary>
@@ -39,9 +39,9 @@ namespace PocApi.Controllers
 		/// <returns></returns>
 		[HttpGet]
 		[Route("ConsultaPagamento/{CodRastreio}")]
-		public ICollection<string> ConsultarPagamento(string CodRastreio)
+		public string ConsultarPagamento(string CodRastreio)
 		{
-			return _processarPagamento.ConsultarStatusDoProcessamento(_mensageria, CodRastreio).Result;
+			return _processarPagamento.ConsultarStatusDoProcessamento(_mensageriaPagametos, CodRastreio).Result;
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace PocApi.Controllers
 		[Route("ProcessarPagamento")]
 		public string ProcessarPagamento([FromBody] PagamentoController pagamento)
 		{
-			return _processarPagamento.ExecutarProcessamento(_mensageria, new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
+			return _processarPagamento.ExecutarProcessamento(_mensageriaPagametos, new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
 		}
 	}
 }

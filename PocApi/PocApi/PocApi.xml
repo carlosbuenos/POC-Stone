@@ -28,12 +28,12 @@
             
             </summary>
         </member>
-        <member name="M:PocApi.Controllers.ProcessaPagamentoController.#ctor(Dominio.Interfaces.IProcessaPagamento,Dominio.Interfaces.IManipuladorPubSub)">
+        <member name="M:PocApi.Controllers.ProcessaPagamentoController.#ctor(Dominio.Interfaces.IProcessaPagamento,Dominio.Interfaces.IManipuladorPubSub{Dominio.Entidades.Pagamentos})">
             <summary>
             
             </summary>
             <param name="processarPagamento"></param>
-            <param name="mensageria"></param>
+            <param name="mensageriaPagametos"></param>
         </member>
         <member name="M:PocApi.Controllers.ProcessaPagamentoController.ConsultarPagamento(System.String)">
             <summary>
@@ -51,7 +51,9 @@
             BradescoVisa       = 2,
             ItauMasterCard     = 3,
             ItauVisa           = 4,
-            ItauElo            = 5
+            ItauElo            = 5,
+            ####################################################
+            O atributo valor deve ser iinformado com "." ponto e não com "," virgula para separar a casa decimal
             </summary>
             <param name="pagamento"></param>
             <returns></returns>

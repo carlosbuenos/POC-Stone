@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-	public interface IManipuladorPubSub
+	public interface IManipuladorPubSub<T> where T:class
 	{
 		Task<string> EnviarMensagem(string mensagem);
-		Task<ICollection<string>> LeituraMensagem(string rastreio);
+		Task<T> LeituraMensagem(string rastreio);
 	}
 }

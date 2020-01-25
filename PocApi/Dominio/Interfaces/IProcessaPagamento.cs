@@ -8,7 +8,7 @@ namespace Dominio.Interfaces
 {
 	public interface IProcessaPagamento
 	{
-		Task<string> ExecutarProcessamento(IManipuladorPubSub mensageria,Pagamentos pagamento);
-		Task<ICollection<string>> ConsultarStatusDoProcessamento(IManipuladorPubSub mensageria,string codPagamento);
+		Task<string> ExecutarProcessamento(IManipuladorPubSub<Pagamentos> mensageria,Pagamentos pagamento);
+		Task<string> ConsultarStatusDoProcessamento(IManipuladorPubSub<Pagamentos> mensageria,string codPagamento);
 	}
 }
