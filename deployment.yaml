@@ -25,11 +25,19 @@ spec:
       labels:
         app: pocapi
     spec:
-     
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: pubsub-key2
       containers:
       - name: pocapi
         image: PocApi
-        
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
         ports:
           - containerPort: 82
         resources:

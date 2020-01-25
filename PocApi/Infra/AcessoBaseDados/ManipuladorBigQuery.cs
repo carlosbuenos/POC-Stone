@@ -1,17 +1,11 @@
-﻿using Dominio.Interfaces;
-using Google.Cloud.BigQuery.V2;
-using Infra.AcessoBaseDados.ChaveSecretaGCP;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Google.Cloud.BigQuery.V2;
 using System.Threading.Tasks;
 
 namespace Infra.AcessoBaseDados
 {
 	public abstract class ManipuladorBigQuery<T> where T : class
 	{
-		private BigQueryClient _cliente;
+		public BigQueryClient _cliente;
 		private BigQueryDataset _dataSet;
 		public BigQueryTable _tabela { get; private set; }
 
@@ -23,8 +17,7 @@ namespace Infra.AcessoBaseDados
 		{
 			if (_cliente == null)
 			{
-				var credenciais = AcessarChave.RetornarCredenciais();
-				_cliente =  BigQueryClient.Create("estudo-ci-cd", credenciais);
+				_cliente =  BigQueryClient.Create("estudo-ci-cd");
 			}
 		}
 
@@ -46,13 +39,7 @@ namespace Infra.AcessoBaseDados
 			 CriarTabela();
 		}
 
-		public abstract Task<string> AlterarRegsitro(T _obj);
-
-		public abstract Task<string> ConsultarRegistro(string codRegistro);
-
-		public abstract Task<string> ExcluirRegistro(T _obj);
-
-		public abstract Task<string> InserirRegistro(T _obj);
+		public abstract Task InserirRegistro(T _obj);
 
 
 	}

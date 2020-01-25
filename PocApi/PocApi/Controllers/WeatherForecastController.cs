@@ -17,7 +17,7 @@ namespace PocApi.Controllers
 	public class WeatherForecastController : ControllerBase
 	{
 		private readonly IProcessaPagamento _processaPagamento;
-		
+
 		private static readonly string[] Summaries = new[]
 		{
 			"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -44,7 +44,7 @@ namespace PocApi.Controllers
 		[HttpGet]
 		public IEnumerable<WeatherForecast> Get()
 		{
-			_processaPagamento.ExecutarProcessamento(new Pagamentos(TiposDePagamento.BradescoMasterCard, 30.65));
+			//
 			var rng = new Random();
 			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
 			{
@@ -54,5 +54,7 @@ namespace PocApi.Controllers
 			})
 			.ToArray();
 		}
+
+		
 	}
 }

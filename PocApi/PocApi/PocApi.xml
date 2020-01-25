@@ -4,6 +4,58 @@
         <name>PocApi</name>
     </assembly>
     <members>
+        <member name="T:PocApi.Assinaturas.IProcessaPagamentoAssinaturas">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PocApi.Assinaturas.IProcessaPagamentoAssinaturas.ConsultarPagamento(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="CodRastreio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PocApi.Assinaturas.IProcessaPagamentoAssinaturas.ProcessarPagamento(PocApi.ModeloController.PagamentoController)">
+            <summary>
+            
+            </summary>
+            <param name="pagamento"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PocApi.Controllers.ProcessaPagamentoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PocApi.Controllers.ProcessaPagamentoController.#ctor(Dominio.Interfaces.IProcessaPagamento,Dominio.Interfaces.IManipuladorPubSub)">
+            <summary>
+            
+            </summary>
+            <param name="processarPagamento"></param>
+            <param name="mensageria"></param>
+        </member>
+        <member name="M:PocApi.Controllers.ProcessaPagamentoController.ConsultarPagamento(System.String)">
+            <summary>
+            Consultar um pagamento
+            </summary>
+            <param name="CodRastreio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PocApi.Controllers.ProcessaPagamentoController.ProcessarPagamento(PocApi.ModeloController.PagamentoController)">
+            <summary>
+            Processar um pagamento
+            Tipos de pagamento disponíveis
+            BradescoMasterCard = 0,
+            BradescoElo        = 1,
+            BradescoVisa       = 2,
+            ItauMasterCard     = 3,
+            ItauVisa           = 4,
+            ItauElo            = 5
+            </summary>
+            <param name="pagamento"></param>
+            <returns></returns>
+        </member>
         <member name="T:PocApi.Controllers.WeatherForecastController">
             <summary>
             
@@ -21,6 +73,50 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:PocApi.ModeloController.PagamentoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PocApi.ModeloController.PagamentoController.tipoPagamento">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PocApi.ModeloController.PagamentoController.valor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PocApi.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PocApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:PocApi.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PocApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:PocApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

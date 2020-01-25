@@ -15,8 +15,10 @@ namespace Infra.AcessoBaseDados
 				{ "tipoDePagamento", BigQueryDbType.String },
 				{ "valor", BigQueryDbType.Numeric },
 				{ "statusPagamento", BigQueryDbType.String },
+				{ "dataPagamento", BigQueryDbType.DateTime },
+				{ "rastreio", BigQueryDbType.String },
 
-        	};
+			};
 		}
 	}
 }

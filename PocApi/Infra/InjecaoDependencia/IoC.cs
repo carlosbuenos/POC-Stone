@@ -10,6 +10,7 @@ namespace Infra.InjecaoDependencia
 		public static void CriarInjecoes(IServiceCollection servico)
 		{
 			servico.AddTransient<IProcessaPagamento, ProcessaPagamento>();
+			servico.AddTransient<IManipuladorPubSub, ManipuladorPubSub>();
 		}
 	}
 }
