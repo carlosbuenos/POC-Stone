@@ -52,7 +52,9 @@ namespace PocApi.Controllers
 		/// BradescoVisa       = 2,
 		/// ItauMasterCard     = 3,
 		/// ItauVisa           = 4,
-		/// ItauElo            = 5
+		/// ItauElo            = 5,
+		/// ####################################################
+		/// O atributo valor deve ser iinformado com "." ponto e não com "," virgula para separar a casa decimal
 		/// </summary>
 		/// <param name="pagamento"></param>
 		/// <returns></returns>
