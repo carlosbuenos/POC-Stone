@@ -4,12 +4,12 @@ EXPOSE 82
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
-COPY ["PocApi.sln", "./"]
-COPY ["Dominio/Dominio.csproj", "Dominio/"]
-COPY ["Infra/Infra.csproj", "Infra/"]
-COPY ["PocApi/PocApi.csproj", "PocApi/"]
+COPY ["PocApi/PocApi.sln", "./"]
+COPY ["PocApi/Dominio/Dominio.csproj", "Dominio/"]
+COPY ["PocApi/Infra/Infra.csproj", "Infra/"]
+COPY ["PocApi/PocApi/PocApi.csproj", "PocApi/"]
 RUN dotnet restore "PocApi/PocApi.csproj"
-COPY . .
+COPY PocApi .
 WORKDIR "/src/PocApi"
 RUN dotnet build "PocApi.csproj" -c Release -o /app/build
 
