@@ -28,10 +28,19 @@ namespace Infra.ImplementacaoInteface
 
 		public async Task<string> ExecutarProcessamento(Pagamentos pagamento)
 		{
-			pagamento.AtualizaStatusPagamento();
-			pagamento.AtribuirCodigoRastreio("");
-			await RegistrarProcessamento(pagamento);
-			return "Pagamento processado consulte pelo codigo de rastreio: " + pagamento.rastreio;
+			try
+			{
+				pagamento.AtualizaStatusPagamento();
+				pagamento.AtribuirCodigoRastreio("");
+				await RegistrarProcessamento(pagamento);
+				return "Pagamento processado consulte pelo codigo de rastreio: " + pagamento.rastreio;
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+			
 		}
 
 		//public override async Task InserirRegistro(Pagamentos _obj)
