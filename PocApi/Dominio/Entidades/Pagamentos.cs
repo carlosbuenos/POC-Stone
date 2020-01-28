@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio.Enums;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +18,7 @@ namespace Dominio.Entidades
 
 		}
 
+		[BsonId]
 		public string codPagamento { get; private set; }
 		public string tipoDePagamento { get; private set; }
 		public double valor { get; private set; }
@@ -55,7 +58,7 @@ namespace Dominio.Entidades
 		}
 		public void AtribuirCodigoRastreio(string codRastreio)
 		{
-			rastreio = codRastreio;
+			rastreio = string.IsNullOrEmpty(codRastreio) ? Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10) : codRastreio;
 		}
 
 	}

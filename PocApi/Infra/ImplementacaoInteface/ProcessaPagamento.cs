@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infra.ImplementacaoInteface
 {
-	public class ProcessaPagamento : ManipuladorBigQuery<Pagamentos>, IProcessaPagamento
+	public class ProcessaPagamento : PagamentoRepositorio, IProcessaPagamento
 	{
 
 		public ProcessaPagamento()
@@ -19,35 +19,35 @@ namespace Infra.ImplementacaoInteface
 
 		}
 
-		public async Task<string> ConsultarStatusDoProcessamento(IManipuladorPubSub<Pagamentos> mensageria, string _codRastreio)
+		public async Task<string> ConsultarStatusDoProcessamento(string _codRastreio)
 		{
-			var retorno = (Pagamentos)await mensageria.LeituraMensagem(_codRastreio);
+			var retorno = await ConsultarPagamentoProcessado(_codRastreio);
 			return retorno.statusPagamento;
 		}
 
 
-		public async Task<string> ExecutarProcessamento(IManipuladorPubSub<Pagamentos> mensageria, Pagamentos pagamento)
+		public async Task<string> ExecutarProcessamento(Pagamentos pagamento)
 		{
 			pagamento.AtualizaStatusPagamento();
-			pagamento.AtribuirCodigoRastreio(mensageria.EnviarMensagem(JsonConvert.SerializeObject(pagamento)).Result);
-			await InserirRegistro(pagamento);
+			pagamento.AtribuirCodigoRastreio("");
+			await RegistrarProcessamento(pagamento);
 			return "Pagamento processado consulte pelo codigo de rastreio: " + pagamento.rastreio;
 		}
 
-		public override async Task InserirRegistro(Pagamentos _obj)
-		{
+		//public override async Task InserirRegistro(Pagamentos _obj)
+		//{
 
-			await base._tabela.InsertRowAsync(new BigQueryInsertRow
-			{
-				{ "codPagamento", _obj.codPagamento },
-				{ "tipoDePagamento", _obj.tipoDePagamento },
-				{ "valor", _obj.valor },
-				{ "statusPagamento", _obj.statusPagamento },
-				{ "dataPagamento", _obj.dataPagamento },
-				{ "rastreio", _obj.rastreio },
-			});
+		//	await base._tabela.InsertRowAsync(new BigQueryInsertRow
+		//	{
+		//		{ "codPagamento", _obj.codPagamento },
+		//		{ "tipoDePagamento", _obj.tipoDePagamento },
+		//		{ "valor", _obj.valor },
+		//		{ "statusPagamento", _obj.statusPagamento },
+		//		{ "dataPagamento", _obj.dataPagamento },
+		//		{ "rastreio", _obj.rastreio },
+		//	});
 
-		}
+		//}
 
 	}
 }

@@ -41,7 +41,7 @@ namespace PocApi.Controllers
 		[Route("ConsultaPagamento/{CodRastreio}")]
 		public string ConsultarPagamento(string CodRastreio)
 		{
-			return _processarPagamento.ConsultarStatusDoProcessamento(_mensageriaPagametos, CodRastreio).Result;
+			return _processarPagamento.ConsultarStatusDoProcessamento(CodRastreio).Result;
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace PocApi.Controllers
 		[Route("ProcessarPagamento")]
 		public string ProcessarPagamento([FromBody] PagamentoController pagamento)
 		{
-			return _processarPagamento.ExecutarProcessamento(_mensageriaPagametos, new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
+			return _processarPagamento.ExecutarProcessamento(new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
 		}
 	}
 }
