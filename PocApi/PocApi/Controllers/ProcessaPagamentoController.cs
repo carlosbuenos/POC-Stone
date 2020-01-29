@@ -14,9 +14,9 @@ namespace PocApi.Controllers
 	/// <summary>
 	/// 
 	/// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProcessaPagamentoController : ControllerBase, IProcessaPagamentoAssinaturas
+	[Route("api/[controller]")]
+	[ApiController]
+	public class ProcessaPagamentoController : ControllerBase, IProcessaPagamentoAssinaturas
 	{
 
 		private readonly IProcessaPagamento _processarPagamento;
@@ -62,7 +62,8 @@ namespace PocApi.Controllers
 		[Route("ProcessarPagamento")]
 		public string ProcessarPagamento([FromBody] PagamentoController pagamento)
 		{
-			return _processarPagamento.ExecutarProcessamento(new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
+			var ret = _processarPagamento.ExecutarProcessamento(new Pagamentos(pagamento.tipoPagamento, pagamento.valor)).Result;
+			return ret;
 		}
 	}
 }
