@@ -24,8 +24,9 @@ namespace Infra.ImplementacaoInteface
 
 		public async Task RegistrarProcessamento(Pagamentos _obj)
 		{
-				await Pagamentos.InsertOneAsync(_obj);
-			
+			var listWrites = new List<WriteModel<Pagamentos>>();
+			listWrites.Add(new InsertOneModel<Pagamentos>(_obj));
+			await Pagamentos.BulkWriteAsync(listWrites, new BulkWriteOptions() { IsOrdered = false });
 		}
 	}
 }

@@ -13,7 +13,11 @@ namespace Infra.AcessoBaseDados.AcessoMongo
 		public ContextoMongo()
 		{
 
+#if DEBUG
+			_mongoCliente = new MongoClient("mongodb://pocstone:pocstone@localhost");
+#else
 			_mongoCliente = new MongoClient("mongodb://pocstone:pocstone@mongodb_server:27017");
+#endif
 			_dbMongo = _mongoCliente.GetDatabase("PocStone");
 
 			if (!new GerenciadorDeColecoes().ColecaoExiste(_mongoCliente, "PocStone", "Pagamentos"))
@@ -21,6 +25,8 @@ namespace Infra.AcessoBaseDados.AcessoMongo
 				_dbMongo.CreateCollection("Pagamentos");
 				var collection = _dbMongo.GetCollection<Pagamentos>("Pagamentos");
 				collection.Indexes.CreateOne(Builders<Pagamentos>.IndexKeys.Ascending(_ => _.codPagamento));
+				collection.Indexes.CreateOne(Builders<Pagamentos>.IndexKeys.Ascending(_ => _.rastreio));
+				
 			}
 
 
