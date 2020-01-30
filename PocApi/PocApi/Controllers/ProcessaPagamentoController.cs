@@ -20,16 +20,14 @@ namespace PocApi.Controllers
 	{
 
 		private readonly IProcessaPagamento _processarPagamento;
-		private readonly IManipuladorPubSub<Pagamentos> _mensageriaPagametos;
+
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="processarPagamento"></param>
-		/// <param name="mensageriaPagametos"></param>
-		public ProcessaPagamentoController(IProcessaPagamento processarPagamento, IManipuladorPubSub<Pagamentos> mensageriaPagametos)
+		public ProcessaPagamentoController(IProcessaPagamento processarPagamento)
 		{
 			_processarPagamento = processarPagamento;
-			_mensageriaPagametos = mensageriaPagametos;
 		}
 
 		/// <summary>

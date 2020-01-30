@@ -2,11 +2,14 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 
 namespace Dominio.Entidades
 {
+	
 	public class Pagamentos
 	{
 		public Pagamentos(TiposDePagamento _tiposDePagamento, double _valor)
@@ -18,7 +21,7 @@ namespace Dominio.Entidades
 
 		}
 
-		[BsonId]
+		
 		public string codPagamento { get; private set; }
 		public string tipoDePagamento { get; private set; }
 		public double valor { get; private set; }

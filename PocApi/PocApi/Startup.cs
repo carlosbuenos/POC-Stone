@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using Infra.AcessoBaseDados.AcessoPostgres;
 using Infra.InjecaoDependencia;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace PocApi
 {
@@ -67,6 +63,8 @@ namespace PocApi
 
 				c.IncludeXmlComments(caminhoXmlDoc);
 			});
+			services.AddDbContext<ContextoPostgres>(options =>
+			options.UseNpgsql(Configuration.GetConnectionString("PocStoneDB")));
 			IoC.CriarInjecoes(services);
 		}
 

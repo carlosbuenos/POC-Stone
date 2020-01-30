@@ -28,12 +28,11 @@
             
             </summary>
         </member>
-        <member name="M:PocApi.Controllers.ProcessaPagamentoController.#ctor(Dominio.Interfaces.IProcessaPagamento,Dominio.Interfaces.IManipuladorPubSub{Dominio.Entidades.Pagamentos})">
+        <member name="M:PocApi.Controllers.ProcessaPagamentoController.#ctor(Dominio.Interfaces.IProcessaPagamento)">
             <summary>
             
             </summary>
             <param name="processarPagamento"></param>
-            <param name="mensageriaPagametos"></param>
         </member>
         <member name="M:PocApi.Controllers.ProcessaPagamentoController.ConsultarPagamento(System.String)">
             <summary>
