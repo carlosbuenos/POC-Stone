@@ -61,5 +61,9 @@ namespace Dominio.Entidades
 			rastreio = string.IsNullOrEmpty(codRastreio) ? Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10) : codRastreio;
 		}
 
+		public Pagamentos ClonarObjeto()
+		{
+			return (Pagamentos)this.MemberwiseClone();
+		}
 	}
 }
