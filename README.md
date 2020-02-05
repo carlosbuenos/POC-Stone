@@ -29,4 +29,4 @@ Prova de conceito
 #Após subir o mongo vamos rodar o container criado chamado PocApi
                      
          # opcional - docker pull cbuenohub/pocstone:postgres
-         # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net mongocompose_mongo_net  cbuenohub/pocstone:postgres
+         # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net postgrescompose_default  cbuenohub/pocstone:postgres
