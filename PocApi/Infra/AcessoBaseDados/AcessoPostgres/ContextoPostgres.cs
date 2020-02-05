@@ -1,27 +1,38 @@
 ﻿using Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Infra.AcessoBaseDados.AcessoPostgres
 {
 	public  class ContextoPostgres : DbContext
 	{
+
+
 		public DbSet<Pagamentos> Pagamentos { get; set; }
 
-		public ContextoPostgres()
-		{
 
-		}
-		public ContextoPostgres(DbContextOptionsBuilder<ContextoPostgres> opcoes)
+		public ContextoPostgres(DbContextOptions<ContextoPostgres> options) : base(options)
 		{
-			opcoes.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=pocstone;User Id=pocstone;Password=pocstone;");
+			
 		}
+
+		public ContextoPostgres() : base()
+		{
+		}
+
+		//public ContextoPostgres(DbContextOptionsBuilder<ContextoPostgres> opcoes)
+		//{
+		//	opcoes.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=pocstone;User Id=pocstone;Password=pocstone;");
+		//}
 		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Pagamentos>()
 				.ToTable("Pagamentos")
-				.HasKey(x => x.codPagamento);
+				.Property<string>(p => p.codPagamento).ValueGeneratedOnAdd();
+
+
+
 		}
 	}
 }

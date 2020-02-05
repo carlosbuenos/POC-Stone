@@ -3,6 +3,7 @@ using Dominio.Interfaces;
 using Google.Apis.Bigquery.v2.Data;
 using Google.Cloud.BigQuery.V2;
 using Infra.AcessoBaseDados;
+using Infra.AcessoBaseDados.AcessoPostgres;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Infra.ImplementacaoInteface
 	public class ProcessaPagamento : PagamentoRepositorio, IProcessaPagamento
 	{
 
-		public ProcessaPagamento()
+		public ProcessaPagamento(ContextoPostgres contexto):base(contexto)
 		{
 
 		}

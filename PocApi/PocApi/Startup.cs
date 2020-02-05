@@ -63,9 +63,10 @@ namespace PocApi
 
 				c.IncludeXmlComments(caminhoXmlDoc);
 			});
+			IoC.CriarInjecoes(services);
 			services.AddDbContext<ContextoPostgres>(options =>
 			options.UseNpgsql(Configuration.GetConnectionString("PocStoneDB")));
-			IoC.CriarInjecoes(services);
+
 		}
 
 		/// <summary>

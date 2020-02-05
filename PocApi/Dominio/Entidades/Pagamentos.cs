@@ -1,17 +1,20 @@
 ﻿using Dominio.Enums;
-using MongoDB.Bson.Serialization.Attributes;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 
 namespace Dominio.Entidades
 {
-	
+
 	public class Pagamentos
 	{
+		public Pagamentos()
+		{
+
+		}
 		public Pagamentos(TiposDePagamento _tiposDePagamento, double _valor)
 		{
 			codPagamento = GerarCodigoPagamento();
@@ -21,7 +24,7 @@ namespace Dominio.Entidades
 
 		}
 
-		
+		[Key]
 		public string codPagamento { get; private set; }
 		public string tipoDePagamento { get; private set; }
 		public double valor { get; private set; }
