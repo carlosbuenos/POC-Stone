@@ -1,10 +1,8 @@
 # POC-Stone
 Prova de conceito
-      
-      Para acessar a api é so acessar o endereço.
-      http://35.188.107.134:82/swagger/index.html
+    
 
-      docker pull cbuenohub/pocstone:poc
+      docker pull cbuenohub/pocstone:postgres
       
 #Para subir o container sugiro rodar o compose do mongo da maneira como está abaixo.
   Este Compose sobre o mongo e o mongo express
