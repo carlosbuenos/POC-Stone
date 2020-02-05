@@ -13,7 +13,7 @@ Prova de conceito
 
                           db:
                             image: postgres:alpine
-                            container_name: mongodb_server
+                            container_name: postgres_server
                             restart: always
                             environment:
                               POSTGRES_USER: pocstone
