@@ -43,7 +43,7 @@ namespace PocApi
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo
 				{
-					Title = "PocApi STone",
+					Title = "PocApi Estudo",
 					Version = "v1",
 					Description = "Exemplo de API REST criada com o ASP.NET Core 3.0",
 					Contact = new OpenApiContact

@@ -23,7 +23,9 @@ namespace Infra.ImplementacaoInteface
 		/// <returns></returns>
 		public async Task<Pagamentos> ConsultarPagamentoProcessado(string codigoRastreio)
 		{
+			
 			var pagamento = await _DB.Pagamentos.Where(x => x.rastreio.Equals(codigoRastreio)).FirstOrDefaultAsync();
+			_DB.Dispose();
 			return pagamento;
 		}
 
@@ -31,6 +33,7 @@ namespace Infra.ImplementacaoInteface
 		{
 			await _DB.Set<Pagamentos>().AddAsync(_obj);
 			await _DB.SaveChangesAsync();
+			_DB.Dispose();
 		}
 	}
 }
