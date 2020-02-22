@@ -9,6 +9,7 @@ namespace Infra.Mapping
 		public void Configure(EntityTypeBuilder<Pagamentos> builder)
 		{
 			builder.ToTable("Pagamentos");
+			builder.HasIndex(x => x.rastreio);
 			builder.Property(x => x.codPagamento)
 				.ValueGeneratedOnAdd();
 			builder.Property(x => x.dataPagamento).IsRequired();
