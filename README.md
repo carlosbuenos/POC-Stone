@@ -4,8 +4,8 @@ Prova de conceito
 
       docker pull cbuenohub/pocstone:postgres
       
-#Para subir o container sugiro rodar o compose do mongo da maneira como está abaixo.
-  Este Compose sobre o mongo e o mongo express
+#Para subir o container sugiro rodar o compose do postgres da maneira como está abaixo.
+  Este Compose sobre o postgres e o adminer que permite manipulação através de ferramenta visual pelo navegador..
   
                         version: '3.1'
 
