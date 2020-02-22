@@ -64,7 +64,7 @@ namespace Dominio.Entidades
 		}
 		public void AtribuirCodigoRastreio(string codRastreio)
 		{
-			rastreio = string.IsNullOrEmpty(codRastreio) ? Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10) : codRastreio;
+			rastreio = string.IsNullOrEmpty(codRastreio) ? Guid.NewGuid().ToString().Replace("-", "").Substring(0, 5) : codRastreio;
 		}
 
 		public Pagamentos ClonarObjeto()

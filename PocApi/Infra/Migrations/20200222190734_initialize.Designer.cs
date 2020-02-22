@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infra.Migrations
 {
     [DbContext(typeof(ContextoPostgres))]
-    [Migration("20200205124850_initial")]
-    partial class initial
+    [Migration("20200222190734_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,12 +31,16 @@ namespace Infra.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("rastreio")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(5)")
+                        .HasMaxLength(5);
 
                     b.Property<string>("statusPagamento")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("tipoDePagamento")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("valor")

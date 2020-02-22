@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infra.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,11 +12,11 @@ namespace Infra.Migrations
                 columns: table => new
                 {
                     codPagamento = table.Column<string>(nullable: false),
-                    tipoDePagamento = table.Column<string>(nullable: true),
+                    tipoDePagamento = table.Column<string>(nullable: false),
                     valor = table.Column<double>(nullable: false),
-                    statusPagamento = table.Column<string>(nullable: true),
+                    statusPagamento = table.Column<string>(nullable: false),
                     dataPagamento = table.Column<DateTime>(nullable: false),
-                    rastreio = table.Column<string>(nullable: true)
+                    rastreio = table.Column<string>(maxLength: 5, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -29,12 +29,16 @@ namespace Infra.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("rastreio")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(5)")
+                        .HasMaxLength(5);
 
                     b.Property<string>("statusPagamento")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("tipoDePagamento")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("valor")
