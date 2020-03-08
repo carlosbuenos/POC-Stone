@@ -56,30 +56,3 @@ namespace Infra.Migrations
 }
 
 
-
-          version: '3.1'
-          services:
-            db:
-              image: postgres:alpine
-              container_name: postgres_server
-              restart: always
-              environment:
-                POSTGRES_USER: pocstone
-                POSTGRES_PASSWORD: pocstone
-              ports:
-                - 5432:5432
-              networks: 
-                - postgrenet
-
-            adminer:
-              image: adminer
-              container_name: adminer
-              restart: always
-              ports:
-                - 8080:8080
-              networks: 
-                - postgrenet
-
-          networks:
-            postgrenet:
-              driver: bridge
