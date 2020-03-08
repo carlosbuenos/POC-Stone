@@ -26,7 +26,8 @@ Prova de conceito
                             restart: always
                             ports:
                               - 8080:8080
-#Após subir o mongo vamos rodar o container criado chamado PocApi
+#Após subir o postgre e o Adminer vamos subir a imagem da api PocApi
                      
-         # opcional - docker pull cbuenohub/pocstone:postgres
-         # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net postgrescompose_default  cbuenohub/pocstone:postgres
+     # opcional - docker pull cbuenohub/pocstone:postgres
+     # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net postgrescompose_default cbuenohub/pocstone:postgres
+
