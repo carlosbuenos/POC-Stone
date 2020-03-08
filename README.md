@@ -29,5 +29,5 @@ Prova de conceito
 #Após subir o postgre e o Adminer vamos subir a imagem da api PocApi
                      
      # opcional - docker pull cbuenohub/pocstone:postgres
-     # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net postgrescompose_default cbuenohub/pocstone:postgres
+     # docker run -p 82:82 --link postgres_server:postgres_server --name pocapi -it --net postgrecompose_postgrenet cbuenohub/pocstone:postgres
 
