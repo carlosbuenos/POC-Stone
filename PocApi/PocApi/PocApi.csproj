@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Carlos\source\repos\poc\PocApi\PocApi\PocApi.xml</DocumentationFile>
+    <DocumentationFile>C:\POC\PocApi\PocApi\PocApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\Carlos\source\repos\poc\PocApi\PocApi\PocApi.xml</DocumentationFile>
+    <DocumentationFile>C:\POC\PocApi\PocApi\PocApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
